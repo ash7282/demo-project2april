@@ -1,5 +1,6 @@
 import os
 import sys
+import logging 
 from src.logger import logging
 from src.exception import CustomException
 import pandas as pd 
@@ -29,7 +30,7 @@ class DataIngestion:
     def initialize_data_ingestion(self):
         logging.info('Data Ingestion Methods Starts')
         try:
-            df.pd.read_csv(os.path.join('notebooks/data','gemstone.csv'))
+            df=pd.read_csv(os.path.join('notebooks/data','gemstone.csv'))
             logging.info('Dataset read as pandas Dataframe')
 ##This module defines functions and classes which implement a flexible event logging system for applications and libraries.
             os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path),exit_ok=True)
@@ -51,5 +52,5 @@ class DataIngestion:
         
         except Exception as e:
             logging.info('Exception occured at data Ingestion stage')
-            raise CustomeException(e,sys)
+            raise CustomException(e,sys)
         
